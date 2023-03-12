@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@rollup/plugin-commonjs": "^24.0.1",
+		"@rollup/plugin-replace": "^5.0.2",
 		"rollup-plugin-typescript2": "^0.34.1"
 	}
 }

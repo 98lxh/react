@@ -12,3 +12,6 @@ export interface ReactElementType {
 	key: Key;
 	ref: Ref;
 }
+
+
+export type Action<State> = State | ((pervState: State) => State)

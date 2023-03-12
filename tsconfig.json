@@ -19,7 +19,7 @@
 		"skipLibCheck": true,
 		"typeRoots": ["./types", "./node_modules/@types/"],
 		"paths": {
-			"hostConfig": ["./react-dom/src/hostConfig.ts"]
+			"hostConfig": ["./react-reconciler/src/hostConfig.ts"]
 		}
 	}
 }
