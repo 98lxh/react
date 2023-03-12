@@ -16,7 +16,7 @@ function perpareRefreshStack(root: FiberRootNode) {
 
 /* 在fiber中调度update **/
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
-  //TODO 调度流程
+  //TODO: 调度流程
   /** 对于首屏渲染，传入的fiber就是hostRootFiber */
   /** 对于其他流程，传入的component对应的fiber */
   const root = markUpdateFormFiberRoot(fiber) // -> fiberRoot

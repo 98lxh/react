@@ -1,4 +1,4 @@
-import { appendInitalChild, createInstance, createTextInstance } from "hostConfig";
+import { appendInitalChild, Container, createInstance, createTextInstance } from "hostConfig";
 import { FiberNode } from "./fiber";
 import { NoFlags } from "./fiberFlags";
 import { HostComponent, HostRoot, HostText } from "./workTags";
@@ -14,7 +14,8 @@ export const completeWork = (wip: FiberNode) => {
         //stateNode -> 对应的dom -> update流程
       } else {
         /* 1. 构建DOM **/
-        const instance = createInstance(wip.type, newProps) // 对应浏览器环境 -> instance === dom
+        // const instance = createInstance(wip.type, newProps) // 对应浏览器环境 -> instance === dom
+        const instance = createInstance(wip.type) // 对应浏览器环境 -> instance === dom
         /* 2. 将DOM插入到DOM树中 **/
         appendAllChildrne(instance, wip)
         wip.stateNode = instance
@@ -48,7 +49,7 @@ export const completeWork = (wip: FiberNode) => {
  * @param parent 父fiberNode
  * @param wip 正在工作的fiberNode
 */
-function appendAllChildrne(parent: FiberNode, wip: FiberNode) {
+function appendAllChildrne(parent: Container, wip: FiberNode) {
   /**
    * workInProgress有可能不是一个节点例:
    * <div><App /></div>

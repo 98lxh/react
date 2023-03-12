@@ -38,6 +38,6 @@ export function getPackageJSON(pkgName) {
  * 获取rollup公用的插件
  * @param pkgName 包名
  */
-export function getBaseRollupPlugin({ typescript = {}, alias={__DEV__:true} } = {}) {
+export function getBaseRollupPlugin({ typescript = {}, alias={ __DEV__:true, preventAssignment:true }} = {}) {
 	return [replace(alias),cjs(), ts(typescript)];
 }

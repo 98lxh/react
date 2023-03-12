@@ -13,7 +13,7 @@ jsx转换包含两部分:
   - [ReactCreateElement方法](./src/jsx.ts)
 
 
-对应的打包产出文件
+[对应的打包产出文件](./../../scripts/rollup/react.config.js)
   - react/jsx-dev-runtime(dev环境)
   - react/jsx-runtime(prod)环境
   - React

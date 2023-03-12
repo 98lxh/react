@@ -1,7 +1,7 @@
 import { appendChildToContainer, Container } from "hostConfig";
-import { FiberNode, FiberRootNode } from "./fiber";
 import { MutaitonMask, NoFlags, Placement } from "./fiberFlags";
 import { HostComponent, HostRoot, HostText } from "./workTags";
+import { FiberNode, FiberRootNode } from "./fiber";
 
 /* 指向下一个需要执行的effect **/
 let nextEffect: FiberNode | null = null
@@ -45,7 +45,7 @@ function commitMutaitonEffectsOnFiber(finishedWork: FiberNode) {
     finishedWork.flags &= ~Placement
   }
 
-  //TODO Update ChildDeletion
+  //TODO: Update ChildDeletion
 }
 
 function commitPlacement(finishedWork: FiberNode) {
@@ -55,13 +55,16 @@ function commitPlacement(finishedWork: FiberNode) {
   }
 
   const hostParent = getHostParent(finishedWork)
-  appendPlacementNodeIntoContainer(finishedWork, hostParent)
+
+  if (hostParent !== null) {
+    appendPlacementNodeIntoContainer(finishedWork, hostParent)
+  }
 }
 
 /**
  * 获取宿主环境的parent节点
 */
-function getHostParent(fiber: FiberNode): Container {
+function getHostParent(fiber: FiberNode): Container | null {
   let parent = fiber.return
   while (parent) {
     const parentTag = parent.tag
@@ -80,6 +83,8 @@ function getHostParent(fiber: FiberNode): Container {
   if (__DEV__) {
     console.warn("未找到host parent");
   }
+
+  return null
 }
 
 function appendPlacementNodeIntoContainer(finishedWork: FiberNode, hostParent: Container) {
@@ -93,7 +98,7 @@ function appendPlacementNodeIntoContainer(finishedWork: FiberNode, hostParent: C
     let sibling = child.sibling
 
     while (sibling !== null) {
-      appendChildToContainer(sibling, hostParent)
+      appendPlacementNodeIntoContainer(sibling, hostParent)
       sibling = sibling.sibling
     }
   }

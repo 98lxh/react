@@ -65,7 +65,7 @@ export function ChildrenReconciler(shouldTrackEffects: boolean) {
       }
     }
 
-    //TODO 多节点的情况 ul > li*3
+    //TODO: 多节点的情况 ul > li*3
 
     //HostText
     if (typeof newChild === 'string' || typeof newChild === 'number') {
